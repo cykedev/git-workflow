@@ -9,3 +9,4 @@ cd ..
 cd clones
 git clone ../remotes/team1
 git clone ../remotes/team2
+git clone ../remotes/master integrator

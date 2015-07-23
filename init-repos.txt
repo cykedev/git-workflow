@@ -1,0 +1,11 @@
+mkdir -p repos/git/test
+mkdir remotes
+mkdir clones
+cd remotes
+git init --bare master
+git init --bare team1
+git init --bare team2
+cd ..
+cd clones
+git clone ../remotes/team1
+git clone ../remotes/team2

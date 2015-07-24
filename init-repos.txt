@@ -5,29 +5,33 @@ cd remotes
 git init --bare master
 git init --bare team1
 git init --bare team2
+
 cd ..
 cd clones
-git clone ../remotes/team1
-git clone ../remotes/team2
+
 git clone ../remotes/master integrator
-
-
-cd team1
-git remote add master ~/repos/git/test/remotes/master
-#git branch -u master/master
-cd ..
-
-cd team2
-git remote add master ~/repos/git/test/remotes/master
-#git branch -u master/master
-cd ..
-
 cd integrator
 git remote add team1 ~/repos/git/test/remotes/team1
 git remote add team2 ~/repos/git/test/remotes/team2
-# push masterbranch to remotes
+echo "foo" test.txt; git push -A -m "initial commit"
+git push
 cd ..
 
-#pull all remotes
-#update tracking of branch master to remote master
+git clone ../remotes/team1 team1
+cd team1
+git remote add master ~/repos/git/test/remotes/master
+git pull
+git pull master
+git branch -u master/master
+cd ..
+
+git clone ../remotes/team2 team2
+cd team2
+git remote add master ~/repos/git/test/remotes/master
+git pull
+git pull master
+git branch -u master/master
+cd ..
+
+
 

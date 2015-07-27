@@ -2,15 +2,16 @@ cd ..
 rm -rf branchkonzept
 git init branchkonzept
 cd branchkonzept
-git branch stable; git checkout stable
 touch .gitignore; git add .; git commit -m "started project"
-git branch develop; git checkout develop
+git checkout -b stable
+git branch -d master
+git checkout -b develop
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some development ..."
-git branch feature-1; git checkout feature-1
+git checkout -b feature-1
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 git checkout develop
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some development ..."
-git branch feature-2; git checkout feature-2
+git checkout -b feature-2
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 git checkout develop
@@ -19,37 +20,37 @@ echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some devel
 git checkout feature-2
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 git checkout develop
-git merge feature-2
+git merge --no-ff feature-2
 git commit -m "merged"
 git checkout develop
-git branch release-1; git checkout release-1
+git checkout -b release-1
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "release bugfixing ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "release bugfixing ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "release bugfixing ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "release bugfixing ..."
 git checkout develop
-git merge release-1
+git merge --no-ff release-1
 git commit -m "merge"
 git checkout stable
-git merge release-1
+git merge --no-ff release-1
 git commit -m "merge"
 git tag v1.0 -m "create tag"
 git checkout feature-1
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 git checkout stable
-git branch hotfix-v1.0; git checkout hotfix-v1.0
+git checkout -b hotfix-v1.0
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "hotfixing ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "hotfixing ..."
 git checkout develop
-git merge hotfix-v1.0
+git merge --no-ff hotfix-v1.0
 git commit -m "merge"
 git checkout stable
-git merge hotfix-v1.0
+git merge --no-ff hotfix-v1.0
 git commit -m "merge"
 git tag v1.1 -m "create tag"
 git checkout develop
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some development ..."
-git branch feature-3; git checkout feature-3
+git checkout -b feature-3
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 git checkout develop
@@ -58,7 +59,7 @@ echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some devel
 git checkout feature-3
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some feature development ..."
 git checkout develop
-git merge feature-3
+git merge --no-ff feature-3
 git commit -m "merged"
 git checkout develop
 git checkout feature-1
@@ -67,16 +68,16 @@ git checkout develop
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some development ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some development ..."
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "some development ..."
-git merge feature-1
+git merge --no-ff feature-1
 git commit -m "merged"
 git checkout develop
-git branch release-2; git checkout release-2
+git checkout -b release-2
 echo $(openssl rand -base64 32) >> foo.txt; git add .; git commit -m "release bugfixing ..."
 git checkout develop
-git merge release-2
+git merge --no-ff release-2
 git commit -m "merge"
 git checkout stable
-git merge release-2
+git merge --no-ff release-2
 git commit -m "merge"
 git tag v2.0 -m "create tag"
 git checkout develop

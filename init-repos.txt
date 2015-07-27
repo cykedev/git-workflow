@@ -9,29 +9,37 @@ git init --bare team2
 cd ..
 cd clones
 
-git clone ../remotes/master integrator
+git init integrator
 cd integrator
+git remote add master ~/repos/git/test/remotes/team1
 git remote add team1 ~/repos/git/test/remotes/team1
 git remote add team2 ~/repos/git/test/remotes/team2
+git fetch master
+git branch -u master/master master
 echo "foo" test.txt; git push -A -m "initial commit"
 git push
 cd ..
 
-git clone ../remotes/team1 team1
+git init team1
 cd team1
 git remote add master ~/repos/git/test/remotes/master
-git pull
-git pull master
-git branch -u master/master
+git remote add team1 ~/repos/git/test/remotes/team1
+git config remote.master.pushurl 'you are not allowed to push to the master repository!'
+git pull master master
+git branch -u master/master master
+git fetch team1
 cd ..
 
-git clone ../remotes/team2 team2
+git init team2
 cd team2
 git remote add master ~/repos/git/test/remotes/master
-git pull
-git pull master
-git branch -u master/master
+git remote add team2 ~/repos/git/test/remotes/team2
+git config remote.master.pushurl "you are not allowed to push to the master repository!"
+git pull master master
+git branch -u master/master master
+git fetch team2
 cd ..
+
 
 
 

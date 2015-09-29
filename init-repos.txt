@@ -11,13 +11,12 @@ cd clones
 
 git init integrator
 cd integrator
-git remote add master ~/repos/git/test/remotes/team1
+git remote add master ~/repos/git/test/remotes/master
 git remote add team1 ~/repos/git/test/remotes/team1
 git remote add team2 ~/repos/git/test/remotes/team2
-git fetch master
-git branch -u master/master master
-echo "foo" test.txt; git push -A -m "initial commit"
-git push
+git fetch --all
+echo "foo" > test.txt; git add .; git commit -m "initial commit"
+git push --set-upstream master master
 cd ..
 
 git init team1
@@ -27,9 +26,8 @@ git remote add team1 ~/repos/git/test/remotes/team1
 git config remote.master.pushurl 'you are not allowed to push to the master repository!'
 git config --add remote.team1.push 'refs/remotes/master/*:refs/heads/*'
 git config --add remote.team1.push 'refs/heads/*:refs/heads/*'
+git fetch --all
 git pull master master
-git branch -u master/master master
-git fetch team1
 cd ..
 
 git init team2
@@ -39,9 +37,8 @@ git remote add team2 ~/repos/git/test/remotes/team2
 git config remote.master.pushurl "you are not allowed to push to the master repository!"
 git config --add remote.team2.push 'refs/remotes/master/*:refs/heads/*'
 git config --add remote.team2.push 'refs/heads/*:refs/heads/*'
+git fetch --all
 git pull master master
-git branch -u master/master master
-git fetch team2
 cd ..
 
 
